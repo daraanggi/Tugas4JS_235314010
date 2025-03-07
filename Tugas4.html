@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas 4 - JavaScript</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <img src="dara.jpg" alt="Foto Dara" class="profile-img">
+        <h1>Dara Anggi Puspa - 235314010</h1>
+    </header>
+    <div class="container">
+        <div class="input-group">
+        <label for="nama">Nama:</label>
+        <input type="text" id="nama">
+        <div id="namaError" class="error hidden">Nama tidak boleh kosong!</div>
+    </div>
+
+    <div class="input-group">
+        <label for="jumlah">Jumlah pilihan:</label>
+        <input type="number" id="jumlah" min="1">
+        <div id="jumlahError" class="error hidden">Masukkan angka minimal 1!</div>
+    </div>
+    <div class="button-container">
+        <button onclick="generateFields()">OK</button>
+    </div>
+
+    <div id="pilihanContainer" class="container hidden"></div>
+    <div id="hasilContainer" class="container hidden"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
