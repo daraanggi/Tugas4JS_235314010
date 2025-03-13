@@ -1,56 +1,67 @@
 function generateFields() {
     let nama = document.getElementById('nama').value.trim();
     let jumlah = parseInt(document.getElementById('jumlah').value);
-    let namaError = document.getElementById('namaError');
-    let jumlahError = document.getElementById('jumlahError');
-    
-    namaError.classList.add('hidden');
-    jumlahError.classList.add('hidden');
-    
-    if (nama === '') {
-        namaError.classList.remove('hidden');
+
+    if (nama === '' || isNaN(jumlah) || jumlah < 1) {
+        alert('Masukkan Nama dan Jumlah Pilihan yang valid!');
         return;
     }
-    if (isNaN(jumlah) || jumlah < 1) {
-        jumlahError.classList.remove('hidden');
-        return;
-    }
-    
+
     let container = document.getElementById('pilihanContainer');
     container.innerHTML = `<h2>Masukkan ${jumlah} Pilihan</h2>`;
-    
+
     for (let i = 1; i <= jumlah; i++) {
-        container.innerHTML += `<label for='pilihan${i}'>Pilihan ${i}:</label>
-                                <input type='text' id='pilihan${i}'><br>`;
+        container.innerHTML += `<div class='input-group'>
+            <label for='pilihan${i}'>Pilihan ${i}:</label>
+            <input type='text' id='pilihan${i}'>
+        </div>`;
     }
-    container.innerHTML += `<button onclick="generateSelection(${jumlah})">OK</button>`;
+    container.innerHTML += `<button onclick="submitChoices(${jumlah})">OK</button>`;
     container.classList.remove('hidden');
 }
 
-function generateSelection(jumlah) {
-    let pilihanContainer = document.getElementById('pilihanContainer');
-    let hasilContainer = document.getElementById('hasilContainer');
-    let selectedHTML = '<h2>Pilih Salah Satu</h2>';
+function submitChoices(jumlah) {
+    let nama = document.getElementById('nama').value.trim();
+    let pilihan = [];
     
-    selectedHTML += '<select id="finalChoice">';
     for (let i = 1; i <= jumlah; i++) {
-        let pilihan = document.getElementById(`pilihan${i}`).value.trim();
-        if (pilihan === '') {
-            alert(`Pilihan ${i} tidak boleh kosong!`);
+        let value = document.getElementById(`pilihan${i}`).value.trim();
+        if (value === '') {
+            alert(`Isi semua pilihan sebelum melanjutkan!`);
             return;
         }
-        selectedHTML += `<option value='${pilihan}'>${pilihan}</option>`;
+        pilihan.push(value);
     }
-    selectedHTML += '</select><br><button onclick="showResult()">OK</button>';
-    
-    hasilContainer.innerHTML = selectedHTML;
+
+    let hasilContainer = document.getElementById('hasilContainer');
+    hasilContainer.innerHTML = `<h2>Pilihan :</h2>`;
+
+    pilihan.forEach((item, index) => {
+        hasilContainer.innerHTML += `
+            <div>
+                <input type="radio" name="pilihan" id="radio${index}" value="${item}">
+                <label for="radio${index}">${item}</label>
+            </div>`;
+    });
+
+    hasilContainer.innerHTML += `<button onclick="confirmSelection('${nama}', ${jumlah}, ['${pilihan.join("','")}'])">Submit</button>`;
     hasilContainer.classList.remove('hidden');
 }
 
-function showResult() {
-    let nama = document.getElementById('nama').value;
-    let jumlah = document.getElementById('jumlah').value;
-    let selectedOption = document.getElementById('finalChoice').value;
-    let resultText = `Hallo, nama saya ${nama}, saya mempunyai sejumlah ${jumlah} pilihan, dan saya memilih ${selectedOption}.`;
-    alert(resultText);
+function confirmSelection(nama, jumlah, pilihan) {
+    let selectedOption = document.querySelector('input[name="pilihan"]:checked');
+    if (!selectedOption) {
+        alert('Pilih salah satu opsi sebelum melanjutkan!');
+        return;
+    }
+
+    let pilihanTerpilih = selectedOption.value;
+    let params = new URLSearchParams({
+        nama: nama,
+        jumlah: jumlah,
+        pilihan: pilihan.join(","),
+        terpilih: pilihanTerpilih
+    });
+
+    window.location.href = `output.html?${params.toString()}`;
 }
