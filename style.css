@@ -13,6 +13,15 @@ body {
     text-align: left;
 }
 
+.profile-img {
+    width: 150px; /* Sesuaikan ukuran gambar */
+    height: auto; /* Menjaga aspek rasio */
+    border-radius: 10px; /* Agar sudutnya sedikit membulat */
+    display: block; /* Memastikan gambar tidak ada jarak aneh */
+    margin: 10px auto; /* Pusatkan gambar */
+    max-width: 100%; /* Agar tetap responsif di layar kecil */
+}
+
 .input-group {
     margin-bottom: 15px;
 }
