@@ -1,5 +1,4 @@
 function generateFields() { 
-    document.getElementById('okButton').style.display = "none";
     // Membuat input field berdasarkan jumlah pilihan yang diinputkan
     let nama = document.getElementById('nama').value.trim();
     let jumlah = parseInt(document.getElementById('jumlah').value);
@@ -9,6 +8,8 @@ function generateFields() {
         alert('Masukkan nama dan jumlah pilihan yang valid!');
         return;
     }
+
+    document.getElementById('okButton').style.display = "none";
 
     // Menonaktifkan input nama dan jumlah agar tidak bisa diubah
     document.getElementById('nama').disabled = true;
@@ -32,7 +33,6 @@ function generateFields() {
 }
 
 function submitChoices(jumlah) { // Mengambil data yang telah diinput pengguna dan menampilkan opsi dalam bentuk radio button untuk dipilih
-    document.getElementById('okButton1').style.display = "none";
     let nama = document.getElementById('nama').value.trim();
     let pilihan = [];
 
@@ -44,6 +44,8 @@ function submitChoices(jumlah) { // Mengambil data yang telah diinput pengguna d
             return;
         }
         pilihan.push(value);
+
+        document.getElementById('okButton1').style.display = "none";
 
         // Menonaktifkan input field setelah diisi
         inputField.disabled = true;
@@ -67,7 +69,6 @@ function submitChoices(jumlah) { // Mengambil data yang telah diinput pengguna d
 }
 
 function confirmSelection(nama, jumlah, pilihan) { 
-    document.getElementById('submitButton').style.display = "none";
     let selectedOption = document.querySelector('input[name="pilihan"]:checked');
 
     // Jika pengguna belum memilih, tampilkan peringatan
@@ -75,6 +76,8 @@ function confirmSelection(nama, jumlah, pilihan) {
         alert('Pilih salah satu opsi sebelum melanjutkan!');
         return;
     }
+    document.getElementById('submitButton').style.display = "none";
+
 
     let pilihanTerpilih = selectedOption.value; // Mengambil nilai dari pilihan yang dipilih
 
@@ -94,7 +97,7 @@ function confirmSelection(nama, jumlah, pilihan) {
 
     // Menampilkan hasil di dalam elemen div
     resultDiv.innerHTML = `
-        <p>Halo, nama saya <b>${nama}</b>, saya mempunyai sejumlah <b>${jumlah}</b> pilihan yaitu <b>${pilihanText}</b>, dan saya memilih <b>${pilihanTerpilih}</b>.</p>
+        <p>Halo, nama saya <b>${nama}</b>, saya mempunyai <b>${jumlah}</b> pilihan yaitu <b>${pilihanText}</b>, dan saya memilih <b>${pilihanTerpilih}</b>.</p>
     `;
 
     // Menambahkan elemen hasil ke dalam hasilContainer
