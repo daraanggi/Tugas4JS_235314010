@@ -20,6 +20,7 @@ body {
     transition: 0.3s;
 }
 
+/* Efek hover untuk container */
 .container:hover {
     box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.3);
 }
@@ -35,6 +36,7 @@ body {
     transition: transform 0.3s ease-in-out;
 }
 
+/* Efek hover untuk gambar profil */
 .profile-img:hover {
     transform: scale(1.1);
 }
@@ -44,6 +46,7 @@ body {
     margin-bottom: 15px;
 }
 
+/* Label untuk input */
 .input-group label {
     font-weight: bold;
     font-size: 14px;
@@ -52,6 +55,7 @@ body {
     color: #555;
 }
 
+/* Input field */
 .input-group input {
     width: 100%;
     padding: 10px;
@@ -62,6 +66,7 @@ body {
     transition: 0.3s;
 }
 
+/* Efek fokus pada input */
 .input-group input:focus {
     border-color: #a5a26c;
     box-shadow: 0px 0px 8px rgba(174, 166, 97, 0.5);
@@ -81,6 +86,7 @@ button {
     transition: 0.3s;
 }
 
+/* Efek hover pada tombol */
 button:hover {
     background-color: #31301e;
     transform: scale(1.05);
@@ -91,7 +97,7 @@ button:hover {
     display: none;
 }
 
-/* Hasil pilihan */
+/* Tampilan hasil pilihan */
 #hasilContainer div {
     background-color: #e4e7ac6f;
     padding: 15px;
@@ -103,7 +109,7 @@ button:hover {
     text-align: center;
 }
 
-/* Responsif */
+/* Responsif untuk layar kecil */
 @media (max-width: 480px) {
     .container {
         width: 90%;
@@ -119,4 +125,9 @@ button:hover {
         font-size: 14px;
         padding: 10px;
     }
+}
+
+/* Ukuran teks untuk heading */
+h1 {
+    font-size: 25px; /* Sesuaikan ukuran yang lebih kecil */
 }
